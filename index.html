@@ -1,121 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Give Me Recipe</title>
+<style>
+body{
+font-family:Arial;
+background:#fafafa;
+padding:40px;
+text-align:center;
+}
+
+button{
+padding:12px 20px;
+font-size:16px;
+background:#ff7043;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+#result{
+margin-top:30px;
+background:white;
+padding:20px;
+border-radius:10px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍽 Give Me Recipe</h1>
+<p>Click the button to generate a sample recipe</p>
+
+<button onclick="generateRecipe()">Give Me Recipe</button>
+
+<div id="result"></div>
+
 <script>
-async function callClaude(system, userMsg, prefill='[') {
-  return JSON.stringify([
-    {
-      "name":"Garlic Lemon Chicken Bowl",
-      "cuisine":"Mediterranean",
-      "description":"A bright and savory chicken bowl with lemon, garlic, and greens.",
-      "time":"30 mins",
-      "servings":"2",
-      "difficulty":"Easy",
-      "caloriesPerServing":"420 kcal",
-      "tags":["Healthy","Quick","Protein"],
-      "ingredients":["2 chicken breasts","2 cloves garlic","1 lemon","2 cups spinach","1 cup rice"],
-      "steps":["Cook the rice.","Season and cook the chicken.","Sauté garlic and spinach.","Slice chicken and serve over rice with lemon."],
-      "nutrition":{"calories":"420 kcal","protein":"32g","carbs":"35g","fat":"14g","fiber":"4g","sugar":"3g","sodium":"410mg"},
-      "exercise":[
-        {"type":"Running","emoji":"🏃","duration":"32 mins","intensity":"Moderate"},
-        {"type":"Jogging","emoji":"🏃‍♂️","duration":"45 mins","intensity":"Light"},
-        {"type":"Yoga","emoji":"🧘","duration":"60 mins","intensity":"Gentle"},
-        {"type":"Ballet","emoji":"🩰","duration":"50 mins","intensity":"Moderate"},
-        {"type":"Weightlifting","emoji":"🏋️","duration":"40 mins","intensity":"High"}
-      ],
-      "mealType":"Dinner",
-      "costEstimate":"$9.50",
-      "costBreakdown":[
-        {"item":"2 chicken breasts","cost":"$5.00"},
-        {"item":"2 cloves garlic","cost":"$0.30"},
-        {"item":"1 lemon","cost":"$0.70"},
-        {"item":"2 cups spinach","cost":"$1.50"},
-        {"item":"1 cup rice","cost":"$2.00"}
-      ]
-    },
-    {
-      "name":"Spinach Egg Skillet",
-      "cuisine":"American",
-      "description":"A simple skillet breakfast with eggs, spinach, and herbs.",
-      "time":"15 mins",
-      "servings":"2",
-      "difficulty":"Easy",
-      "caloriesPerServing":"280 kcal",
-      "tags":["Breakfast","Low Carb","Quick"],
-      "ingredients":["4 eggs","2 cups spinach","1 tbsp olive oil","salt","pepper"],
-      "steps":["Heat oil in a skillet.","Add spinach and wilt.","Crack in eggs.","Cook until set and season."],
-      "nutrition":{"calories":"280 kcal","protein":"18g","carbs":"4g","fat":"21g","fiber":"2g","sugar":"1g","sodium":"260mg"},
-      "exercise":[
-        {"type":"Running","emoji":"🏃","duration":"20 mins","intensity":"Moderate"},
-        {"type":"Jogging","emoji":"🏃‍♂️","duration":"30 mins","intensity":"Light"},
-        {"type":"Yoga","emoji":"🧘","duration":"40 mins","intensity":"Gentle"},
-        {"type":"Ballet","emoji":"🩰","duration":"35 mins","intensity":"Moderate"},
-        {"type":"Weightlifting","emoji":"🏋️","duration":"25 mins","intensity":"High"}
-      ],
-      "mealType":"Breakfast",
-      "costEstimate":"$4.80",
-      "costBreakdown":[
-        {"item":"4 eggs","cost":"$2.40"},
-        {"item":"2 cups spinach","cost":"$1.50"},
-        {"item":"1 tbsp olive oil","cost":"$0.40"},
-        {"item":"salt","cost":"$0.20"},
-        {"item":"pepper","cost":"$0.30"}
-      ]
-    },
-    {
-      "name":"Lemon Garlic Pasta",
-      "cuisine":"Italian",
-      "description":"Comforting pasta with garlic, lemon zest, and olive oil.",
-      "time":"20 mins",
-      "servings":"3",
-      "difficulty":"Easy",
-      "caloriesPerServing":"390 kcal",
-      "tags":["Pasta","Comfort Food","Vegetarian"],
-      "ingredients":["250g pasta","3 cloves garlic","1 lemon","2 tbsp olive oil","parsley"],
-      "steps":["Boil pasta.","Sauté garlic in olive oil.","Toss with pasta and lemon.","Top with parsley and serve."],
-      "nutrition":{"calories":"390 kcal","protein":"10g","carbs":"58g","fat":"13g","fiber":"3g","sugar":"2g","sodium":"180mg"},
-      "exercise":[
-        {"type":"Running","emoji":"🏃","duration":"28 mins","intensity":"Moderate"},
-        {"type":"Jogging","emoji":"🏃‍♂️","duration":"38 mins","intensity":"Light"},
-        {"type":"Yoga","emoji":"🧘","duration":"55 mins","intensity":"Gentle"},
-        {"type":"Ballet","emoji":"🩰","duration":"44 mins","intensity":"Moderate"},
-        {"type":"Weightlifting","emoji":"🏋️","duration":"34 mins","intensity":"High"}
-      ],
-      "mealType":"Dinner",
-      "costEstimate":"$6.70",
-      "costBreakdown":[
-        {"item":"250g pasta","cost":"$1.80"},
-        {"item":"3 cloves garlic","cost":"$0.40"},
-        {"item":"1 lemon","cost":"$0.70"},
-        {"item":"2 tbsp olive oil","cost":"$1.20"},
-        {"item":"parsley","cost":"$2.60"}
-      ]
-    },
-    {
-      "name":"Crunchy Garlic Snack Toast",
-      "cuisine":"Fusion",
-      "description":"Crispy toast topped with garlic oil and fresh herbs.",
-      "time":"10 mins",
-      "servings":"2",
-      "difficulty":"Easy",
-      "caloriesPerServing":"210 kcal",
-      "tags":["Snack","Quick","Budget"],
-      "ingredients":["4 slices bread","2 cloves garlic","1 tbsp butter","herbs"],
-      "steps":["Toast the bread.","Mix butter and minced garlic.","Spread on toast.","Top with herbs and serve."],
-      "nutrition":{"calories":"210 kcal","protein":"5g","carbs":"24g","fat":"10g","fiber":"2g","sugar":"2g","sodium":"300mg"},
-      "exercise":[
-        {"type":"Running","emoji":"🏃","duration":"15 mins","intensity":"Moderate"},
-        {"type":"Jogging","emoji":"🏃‍♂️","duration":"22 mins","intensity":"Light"},
-        {"type":"Yoga","emoji":"🧘","duration":"30 mins","intensity":"Gentle"},
-        {"type":"Ballet","emoji":"🩰","duration":"26 mins","intensity":"Moderate"},
-        {"type":"Weightlifting","emoji":"🏋️","duration":"18 mins","intensity":"High"}
-      ],
-      "mealType":"Snack",
-      "costEstimate":"$3.40",
-      "costBreakdown":[
-        {"item":"4 slices bread","cost":"$1.20"},
-        {"item":"2 cloves garlic","cost":"$0.30"},
-        {"item":"1 tbsp butter","cost":"$0.40"},
-        {"item":"herbs","cost":"$1.50"}
-      ]
-    }
-  ]);
+function generateRecipe(){
+
+const recipe = {
+name:"Garlic Lemon Chicken Bowl",
+cuisine:"Mediterranean",
+time:"30 mins",
+calories:"420 kcal",
+ingredients:[
+"2 chicken breasts",
+"2 cloves garlic",
+"1 lemon",
+"2 cups spinach",
+"1 cup rice"
+],
+steps:[
+"Cook the rice",
+"Season and cook the chicken",
+"Sauté garlic and spinach",
+"Serve chicken over rice with lemon"
+]
+}
+
+let html = `
+<h2>${recipe.name}</h2>
+<p><b>Cuisine:</b> ${recipe.cuisine}</p>
+<p><b>Time:</b> ${recipe.time}</p>
+<p><b>Calories:</b> ${recipe.calories}</p>
+
+<h3>Ingredients</h3>
+<ul>
+${recipe.ingredients.map(i=>`<li>${i}</li>`).join("")}
+</ul>
+
+<h3>Steps</h3>
+<ol>
+${recipe.steps.map(i=>`<li>${i}</li>`).join("")}
+</ol>
+`
+
+document.getElementById("result").innerHTML = html
+
 }
 </script>
+
+</body>
+</html>
